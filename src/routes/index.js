@@ -5,14 +5,19 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
     routes: [
         {
-            path: '/login',
+            path: '/',
             name: 'login',
             component: () => import('../page/LoginPage')
         },
         {
-            path: '/',
+            path: '/signup',
             name: 'signup',
             component: () => import('../page/SignUp')
+        },
+        {
+            path: '/chat',
+            name: 'chat',
+            component: () => import('../page/ChatBox')
         },
 
     ],

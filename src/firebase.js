@@ -6,13 +6,15 @@ import {getAuth} from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDVFXx50rCHIiv19qVSMBYkie5JIs8lZ2Q",
-    authDomain: "fir-cy-9efeb.firebaseapp.com",
-    projectId: "fir-cy-9efeb",
-    storageBucket: "fir-cy-9efeb.appspot.com",
-    messagingSenderId: "509614607981",
-    appId: "1:509614607981:web:2558e8d00a3dace1353964"
+    apiKey: "AIzaSyCx87Mf7Ir1amSfWbO5OBdpKRuVxkewARo",
+    authDomain: "hackathon2-ffa32.firebaseapp.com",
+    databaseURL: "https://hackathon2-ffa32-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "hackathon2-ffa32",
+    storageBucket: "hackathon2-ffa32.appspot.com",
+    messagingSenderId: "565048692034",
+    appId: "1:565048692034:web:bf8b03e29386e7eff90cdb"
 };
 
 // Initialize Firebase

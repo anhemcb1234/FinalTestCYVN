@@ -1,38 +1,31 @@
 <template>
-  <div>
+  <div class="font-sans min-h-screen antialiased bg-gray-900 pt-24 pb-5">
+    <div class="flex flex-col justify-center sm:w-96 sm:m-auto mx-5 mb-5 space-y-8">
+        <h1 class="font-bold text-center text-4xl text-yellow-500">Chat<span class="text-blue-500">App</span></h1>
+        <form @submit.prevent="onFormSubmit">
+            <div class="flex flex-col bg-white p-10 rounded-lg shadow space-y-6">
+                <h1 class="font-bold text-xl text-center">Đăng kí</h1>
 
+                <div class="flex flex-col space-y-1">
+                    <input v-model="dataUser.username" type="text" name="username" id="username" class="border-2 rounded px-3 py-2 w-full focus:outline-none focus:border-blue-400 focus:shadow" placeholder="Email" />
+                </div>
 
-
-
-    <div>
-      <div class="min-h-screen bg-purple-400 flex justify-center items-center">
-        <div class="absolute w-60 h-60 rounded-xl bg-purple-300 -top-5 -left-16 z-0 transform rotate-45 hidden md:block">
+                <div class="flex flex-col space-y-1">
+                    <input v-model="dataUser.password" type="password" name="password" id="password" class="border-2 rounded px-3 py-2 w-full focus:outline-none focus:border-blue-400 focus:shadow" placeholder="Mật khẩu" />
+                </div>
+                <div class="flex flex-col-reverse sm:flex-row sm:justify-between items-center">
+                    <router-link to="/" class="inline-block text-blue-500 hover:text-blue-800 hover:underline">
+                        Đăng nhập?
+                    </router-link>
+                    <button type="submit" class="bg-blue-500 text-white font-bold px-5 py-2 rounded focus:outline-none shadow hover:bg-blue-700 transition-colors">Đăng kí</button>
+                </div>
+            </div>
+        </form>
+        <div class="flex justify-center text-gray-500 text-sm">
+            <p>&copy;2022. All right reserved.</p>
         </div>
-        <div class="absolute w-48 h-48 rounded-xl bg-purple-300 -bottom-6 -right-10 transform rotate-12 hidden md:block">
-        </div>
-        <div class="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
-          <div>
-            <h1 class="text-3xl font-bold text-center mb-4 cursor-pointer">Create An Account</h1>
-            <p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Create an
-              account to enjoy all the services without any ads for free!</p>
-          </div>
-          <div class="space-y-4">
-            <input v-model="email" type="text" placeholder="Email Addres" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-            <input v-model="password" type="password" placeholder="Password Addres" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-          </div>
-          <div class="text-center mt-6">
-            <button @click="signup" class="py-3 w-64 text-xl text-white bg-purple-400 rounded-2xl">Create Account</button>
-            <p class="mt-4 text-sm">Already Have An Account? <span class="underline cursor-pointer"> Sign In</span>
-            </p>
-          </div>
-        </div>
-        <div class="w-40 h-40 absolute bg-purple-300 rounded-full top-0 right-12 hidden md:block"></div>
-        <div
-            class="w-20 h-40 absolute bg-purple-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -45,26 +38,24 @@ export default {
   name: "Signup",
   data() {
     return {
-      email: "",
-      password: "",
+      dataUser: {
+                username: "",
+                password: "",
+            }
     };
   },
   methods: {
-    async signup() {
-      if (this.email == "" || this.password == "" ) {
-        alert("không được bo trống trường nào");
-        return;
-      }
+    async onFormSubmit() {
       try {
-        const response = await createUserWithEmailAndPassword(auth, this.email, this.password);
-        const collectionRef = collection(db, 'users');
-        console.log(response.user.email);
-        await addDoc(collectionRef, {
-          email: response.user.email,
-          userId: response.user.uid,
-        });
-        this.$router.push('/login');
+        const response = await createUserWithEmailAndPassword(auth, this.dataUser.username, this.dataUser.password);
+        // const collectionRef = collection(db, 'users');
+        // await addDoc(collectionRef, {
+        //   email: response.user.email,
+        //   userId: response.user.uid,
+        // });
+        alert('Đăng kí thành công');
       } catch (error) {
+        alert(error.message)
         console.log(error.message);
       }
     },
