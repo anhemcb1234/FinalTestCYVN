@@ -48,12 +48,8 @@ export default {
     async onFormSubmit() {
       try {
         const response = await createUserWithEmailAndPassword(auth, this.dataUser.username, this.dataUser.password);
-        // const collectionRef = collection(db, 'users');
-        // await addDoc(collectionRef, {
-        //   email: response.user.email,
-        //   userId: response.user.uid,
-        // });
         alert('Đăng kí thành công');
+        this.$router.push('/');
       } catch (error) {
         alert(error.message)
         console.log(error.message);
