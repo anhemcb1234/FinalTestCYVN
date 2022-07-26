@@ -144,7 +144,7 @@ export default {
         async handlerImg(e) {
             let file = e.target.files[0];
             let data = []
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onloadend = async function(fileLoadedEvent) {
                 let srcData = fileLoadedEvent.target.result;
                 await data.push(srcData)
